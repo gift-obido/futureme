@@ -192,6 +192,19 @@ src/
 
 ## 10. Changelog
 
+- **2026-07-17** — **Typography: Fraunces + Inter → Plus Jakarta Sans, hierarchy by weight.** Removed
+  `@fontsource/fraunces` and `@fontsource-variable/inter`; self-host `@fontsource-variable/plus-jakarta-sans`
+  (single `@import` in globals.css). Both `fontFamily.display` and `fontFamily.sans` now map to
+  `'Plus Jakarta Sans Variable'` (both keys kept — no component family churn); the Fraunces `serif` key
+  was dropped. Weight now carries the hierarchy: `fontWeight.bold` is **capped at 600**, so former-Fraunces
+  headings/wordmark and currently-bold stats (all `font-bold`) render **600**, buttons (`font-semibold`)
+  stay **600**, body/former-Inter is **400**, and nothing exceeds 600 (audit confirmed no weight heavier
+  than `font-bold` existed). Display base rule adds `letter-spacing:-0.02em` so 600 sans headlines still feel
+  deliberate; `.stat` tabular-nums preserved and verified aligned. KitchenSink type-spec labels + two stale
+  comments updated; zero Fraunces/Inter references remain in deps/CSS/config/components; only
+  `plus-jakarta-sans-*.woff2` is fetched. Verified both themes (32/32 assertions), no console errors, AA intact.
+  Note: uppercase eyebrow/caps labels share the `font-semibold` utility with CTAs, so they remain 600 (kept
+  config-only to honor the no-cross-component-find-replace constraint).
 - **2026-07-16** — **Cosmetic: onboarding option-state hierarchy + workout card rebuild.** Selectable
   onboarding options (goal cards + RadioGroup chip/card toggles like Metric/Imperial, Male/Female) now
   use the **exact STEPS-card `border-hairline`** as their flat default, with three ascending states:

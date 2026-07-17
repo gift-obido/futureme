@@ -46,8 +46,8 @@ const Showcase: React.FC = () => {
     <div className="space-y-6 bg-bg text-text">
       {/* Typography */}
       <section className="space-y-2">
-        <h2 className="font-display text-3xl font-bold">Display / Fraunces</h2>
-        <p className="text-sm text-text">Body copy in Inter — primary text on the current surface.</p>
+        <h2 className="font-display text-3xl font-bold">Display / Plus Jakarta Sans 600</h2>
+        <p className="text-sm text-text">Body copy in Plus Jakarta Sans 400 — primary text on the current surface.</p>
         <p className="text-sm text-muted">Muted secondary text (never sun/power).</p>
         <p className="stat text-2xl font-bold">1,234.5 <span className="text-sm text-muted">tabular</span></p>
       </section>

@@ -33,10 +33,15 @@ export default {
         ring: 'rgb(var(--ring) / <alpha-value>)',
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'Cambria', 'Times New Roman', 'serif'],
-        sans: ['"Inter Variable"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        // Kept so existing `font-serif` usages continue to resolve to Fraunces.
-        serif: ['Fraunces', 'Georgia', 'serif'],
+        // One typeface — hierarchy now comes from WEIGHT, not family. Both keys
+        // kept so existing font-display / font-sans usage keeps resolving.
+        display: ['"Plus Jakarta Sans Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans Variable"', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+      // Cap the scale at 600: display headings + currently-bold stats use
+      // `font-bold`, which now renders 600 (semibold). Nothing goes above 600.
+      fontWeight: {
+        bold: '600',
       },
     },
   },
