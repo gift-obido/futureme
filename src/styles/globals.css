@@ -1,0 +1,131 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Semantic tokens as space-separated RGB channels (consumed via rgb(var(--x) / a)). */
+
+  :root,
+  .theme-light {
+    /* raw palette (channels) */
+    --power: 127 119 103;
+    --sun: 249 240 149;
+    --pool: 214 230 228;
+    --neutral: 244 243 235;
+    --strength: 0 0 0;
+
+    /* semantic — light */
+    --bg: 244 243 235;        /* #F4F3EB */
+    --surface: 255 255 255;   /* #FFFFFF */
+    --elevated: 255 255 255;  /* #FFFFFF */
+    --text: 21 20 18;         /* #151412 */
+    --muted: 91 87 78;        /* #5B574E — AA (6.4:1) on bg + surface */
+    --hairline: 228 224 212;  /* #E4E0D4 */
+    --field: 214 209 194;     /* #D6D1C2 — input/toggle default border (light) */
+    --field-hover: 176 169 152; /* #B0A998 — input/toggle hover border (light) */
+    --accent: 127 119 103;    /* power #7F7767 */
+    --highlight: 249 240 149; /* sun #F9F095 */
+    --info: 214 230 228;      /* pool #D6E6E4 */
+    --ring: 127 119 103;      /* power */
+
+    color-scheme: light;
+  }
+
+  .dark,
+  .theme-dark {
+    /* semantic — dark (warm, not pure black) */
+    --bg: 20 19 16;           /* #141310 */
+    --surface: 33 31 25;      /* #211F19 */
+    --elevated: 42 40 35;     /* #2A2823 */
+    --text: 244 243 235;      /* #F4F3EB */
+    --muted: 168 161 150;     /* #A8A196 — AA (6.4:1) on surface */
+    --hairline: 51 48 42;     /* #33302A */
+    --field: 122 117 107;     /* #7A756B — visible input/toggle border (~3.3:1 on card) */
+    --field-hover: 168 161 150; /* #A8A196 (muted) — brighter hover, still below the focus ring */
+    --accent: 127 119 103;    /* power works as-is on dark */
+    --highlight: 249 240 149; /* sun — used sparingly */
+    --info: 38 48 46;         /* dimmed pool panel */
+    --ring: 249 240 149;      /* sun ring reads well on dark */
+
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--text));
+    font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgb(var(--sun) / 0.5);
+    color: rgb(var(--strength));
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Fraunces', Georgia, Cambria, 'Times New Roman', serif;
+    color: rgb(var(--text));
+  }
+
+  /* ≥44px tap targets (checkboxes/radios excluded so they stay compact). */
+  button,
+  [role="button"],
+  [role="radio"],
+  a,
+  select,
+  textarea,
+  summary,
+  input:not([type="checkbox"]):not([type="radio"]) {
+    min-height: 44px;
+  }
+  button,
+  [role="button"] {
+    min-width: 44px;
+  }
+  summary {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Visible 2px focus ring for keyboard users. :where() keeps specificity 0 so
+     components can opt into their own indicator without a fight. */
+  :where(button, [role="button"], [role="radio"], a, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Tabular figures for aligned stats/numbers. */
+  .stat {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+}
+
+/* Premium thin scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--accent) / 0.25);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent) / 0.4);
+}
