@@ -249,7 +249,7 @@ export const WorkoutPlanner: React.FC = () => {
       </ul>
 
       <Button
-        variant="highlight"
+        variant="primary"
         size="lg"
         fullWidth
         onClick={complete}
